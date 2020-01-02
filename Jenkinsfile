@@ -1,3 +1,4 @@
+@Library('global-shared-library@master')
 pipeline {
     agent any
     
@@ -8,7 +9,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "${_version}"
+                script{
+                    def util=new com.mafeifan.Utils()
+                    def version=util.createVersion("${BUILD_NUMBER}")
+                    echo "${version}"
+                    sayHello 'yes'
+                    echo "${_version}"
+                }
             }
         }
     }
