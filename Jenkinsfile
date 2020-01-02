@@ -3,15 +3,15 @@ pipeline {
     agent any
     
     environment {
-        _version=createVersion()
+       _version = createVersion()
     }
     
     stages {
-        stage('Build') {
+        stage ('build') {
             steps {
-                script{
-                    def util=new com.mafeifan.Utils()
-                    def version=util.createVersion("${BUILD_NUMBER}")
+                script {
+                    def util = new com.mafeifan.Utils()
+                    def version = util.createVersion("${BUILD_NUMBER}")
                     echo "${version}"
                     sayHello 'yes'
                     echo "${_version}"
@@ -20,6 +20,7 @@ pipeline {
         }
     }
 }
+
 def createVersion() {
     return new Date().format('yyyyMM') + "-${env.BUILD_NUMBER}"
 }
