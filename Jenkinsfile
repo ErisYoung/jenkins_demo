@@ -1,11 +1,10 @@
-stage('debug') {
-    steps {
-        // echo env.is_print_env
-        script {
-            if (env.is_print_env) {
-                sh "printenv"
-            } else {
-               echo "no execute 'sh printenv'"
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'printenv'
             }
         }
     }
